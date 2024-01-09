@@ -97,12 +97,15 @@ let greatestDecrease = { date: "", amount: 0 };
 for (let i = 0; i < finances.length; i++) {
   // Extract date and profit/loss for the current entry
   const [date, profitLoss] = finances[i];
-}
+  // Add the profit/Loss to the total
+totalProfitLoss += profitLoss;
+  
+
+
 // Increment the total number of months
 totalMonths++;
 
-// Add the profit/loss to the total
-totalProfitLoss += profitLoss;
+
 
 // Calculate change (skip for the first month as there's no previous month)
 if (i > 0) {
@@ -118,7 +121,7 @@ if (i > 0) {
     greatestDecrease.amount = change;
   }
 }
-
+}
 // Calculate the average change
 const averageChange = totalChange / (totalMonths - 1);
 
