@@ -86,3 +86,49 @@ var finances = [
   ['Jan-2017', 138230],
   ['Feb-2017', 671099],
 ];
+// Initialize variables to store analysis results
+let totalMonths = 0;
+let totalProfitLoss = 0;
+let totalChange = 0;
+let greatestIncrease = { date: "", amount: 0 };
+let greatestDecrease = { date: "", amount: 0 };
+
+// Loop through the finances to perform calculations
+for (let i = 0; i < finances.length; i++) {
+  // Extract date and profit/loss for the current entry
+  const [date, profitLoss] = finances[i];
+}
+// Increment the total number of months
+totalMonths++;
+
+// Add the profit/loss to the total
+totalProfitLoss += profitLoss;
+
+// Calculate change (skip for the first month as there's no previous month)
+if (i > 0) {
+  const change = profitLoss - finances[i - 1][1];
+  totalChange += change;
+
+  // Check for greatest increase and decrease
+  if (change > greatestIncrease.amount) {
+    greatestIncrease.date = date;
+    greatestIncrease.amount = change;
+  } else if (change < greatestDecrease.amount) {
+    greatestDecrease.date = date;
+    greatestDecrease.amount = change;
+  }
+}
+
+// Calculate the average change
+const averageChange = totalChange / (totalMonths - 1);
+
+// Display the results
+console.log(`Total Months: ${totalMonths}`);
+console.log(`Total Profit/Loss: $${totalProfitLoss}`);
+console.log(`Average Change: $${averageChange.toFixed(2)}`);
+console.log(
+  `Greatest Increase in Profits: ${greatestIncrease.date} ($${greatestIncrease.amount})`
+);
+console.log(
+  `Greatest Decrease in Losses: ${greatestDecrease.date} ($${greatestDecrease.amount})`
+);
